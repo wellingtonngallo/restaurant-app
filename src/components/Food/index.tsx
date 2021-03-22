@@ -16,11 +16,11 @@ interface FoodData {
 
 interface FoodProps {
   food: FoodData;
-  handleEdit: (food: FoodData) => void;
+  handleEditFood: (food: FoodData) => void;
   handleDelete: (foodId: number) => void;
 }
 
-export const Food = ({ food, handleEdit, handleDelete }: FoodProps): JSX.Element => {
+export const Food = ({ food, handleEditFood, handleDelete }: FoodProps): JSX.Element => {
   const [isAvailable, setIsAvaliable] = useState(food.available);
   const toggleAvailable = async() => {
     await api.put(`/foods/${food.id}`, {
@@ -34,7 +34,7 @@ export const Food = ({ food, handleEdit, handleDelete }: FoodProps): JSX.Element
   const setEditingFood = () => {
     const { id, name, description, price, available, image } = food;
 
-    handleEdit({ id, name, description, price, available, image });
+    handleEditFood({ id, name, description, price, available, image });
   }
 
   return(
